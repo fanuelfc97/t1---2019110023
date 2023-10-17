@@ -40,16 +40,25 @@
                 <div class="mb-3 col-md-12 col-sm-12">
                     <label for="kategori" class="form-label">Kategori Buku</label>
                     <select id="kategori" name="kategori" class="form-control">
-                        <option value="uncategorized">Uncategorized</option>
-                        <option value="sci-fi">Science Fiction</option>
-                        <option value="novel" >Novel</option>
-                        <option value="history" >History</option>
-                        <option value="biography" >Biography</option>
-                        <option value="romance" >Romance</option>
-                        <option value="education" >Education</option>
-                        <option value="culinary" >Culinary</option>
-                        <option value="comic">Comic</option>
-                    </select value="{{ old('kategori', $book->kategori) }}">
+                        @php
+                            $categories = [
+                                'uncategorized' => 'Uncategorized',
+                                'sci-fi' => 'Science Fiction',
+                                'novel' => 'Novel',
+                                'history' => 'History',
+                                'biography' => 'Biography',
+                                'romance' => 'Romance',
+                                'education' => 'Education',
+                                'culinary' => 'Culinary',
+                                'comic' => 'Comic'
+                            ];
+                        @endphp
+                        @foreach ($categories as $value => $label)
+                            <option value="{{ $value }}" {{ old('kategori', $book->kategori) == $value ? 'selected' : '' }}>
+                                {{ $label }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="mb-3 col-md-12 col-sm-12">
                     <label for="penerbit" class="form-label">Penerbit</label>

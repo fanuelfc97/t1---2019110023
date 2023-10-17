@@ -132,6 +132,10 @@ class BooksController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        if ($book->image) {
+            Storage::delete($book->image);
+        }
+        $book->delete();
+        return redirect()->route('books.index')->with('success', 'Book deleted successfully.');
     }
 }

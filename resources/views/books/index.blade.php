@@ -41,6 +41,14 @@
                             <a href="{{ route('books.edit', $books) }}" class="btn btn-primary btn-sm">
                                 Edit
                             </a>
+                            <form action="{{ route('books.destroy', $books) }}" method="POST"
+                                class="d-inline-block">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Are you sure?')">Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @empty
